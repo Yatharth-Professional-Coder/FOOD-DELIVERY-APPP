@@ -38,9 +38,14 @@ const Navbar = () => {
                                     <Link to="/restaurant-panel" className="hover:text-red-200 transition-colors font-medium">Restaurant Dashboard</Link>
                                 )}
                                 {user.role === 'user' && (
-                                    <Link to="/cart" className="flex items-center gap-1 hover:text-red-200 transition-colors">
-                                        <ShoppingBag size={20} /> Cart
-                                    </Link>
+                                    <>
+                                        <Link to="/orders" className="flex items-center gap-1 hover:text-red-200 transition-colors font-medium">
+                                            📋 Orders
+                                        </Link>
+                                        <Link to="/cart" className="flex items-center gap-1 hover:text-red-200 transition-colors font-medium">
+                                            <ShoppingBag size={20} /> Cart
+                                        </Link>
+                                    </>
                                 )}
 
                                 <div className="flex items-center gap-4 bg-red-700 px-4 py-2 rounded-lg">
