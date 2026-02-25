@@ -44,11 +44,12 @@ const RestaurantOverview = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         try {
-            await axios.post('/api/restaurants', {
-                name: formData.get('name'),
-                description: formData.get('description'),
-                address: formData.get('address')
-            }, getHeaders());
+            await axios.post('/api/restaurants', formData, {
+                headers: {
+                    Authorization: `Bearer ${user?.token}`,
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             fetchProfile();
         } catch (error) {
             alert(error.response?.data?.message || 'Error creating profile');
@@ -73,6 +74,10 @@ const RestaurantOverview = () => {
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Address</label>
                         <input type="text" name="address" required className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm" />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Restaurant Image</label>
+                        <input type="file" name="image" accept="image/*" className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100" />
                     </div>
                     <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">Create Profile</button>
                 </form>
