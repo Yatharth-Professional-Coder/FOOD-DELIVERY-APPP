@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { upload } = require('../config/cloudinary');
 const { protect, admin, restaurant } = require('../middleware/authMiddleware');
 const {
     createRestaurant,
@@ -36,14 +35,14 @@ const optionalProtect = (req, res, next) => {
 
 router.route('/')
     .get(optionalProtect, getRestaurants)
-    .post(protect, upload.single('image'), createRestaurant);
+    .post(protect, createRestaurant);
 
 router.route('/my/profile')
     .get(protect, getMyRestaurant);
 
 router.route('/:id')
     .get(getRestaurantById)
-    .put(protect, upload.single('image'), updateRestaurant)
+    .put(protect, updateRestaurant)
     .delete(protect, admin, deleteRestaurant);
 
 router.route('/:id/approve')

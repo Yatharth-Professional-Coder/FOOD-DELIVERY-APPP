@@ -39,10 +39,14 @@ const MenuManager = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         try {
-            await axios.post(`/api/foods/${profile._id}`, formData, {
+            await axios.post(`/api/foods/${profile._id}`, {
+                name: formData.get('name'),
+                category: formData.get('category'),
+                price: formData.get('price'),
+                image: formData.get('image')
+            }, {
                 headers: {
-                    Authorization: `Bearer ${user?.token}`,
-                    'Content-Type': 'multipart/form-data'
+                    Authorization: `Bearer ${user?.token}`
                 }
             });
             setIsModalOpen(false);
@@ -159,8 +163,8 @@ const MenuManager = () => {
                                 <input type="number" name="price" required min="0" className="mt-1 block w-full px-3 py-2 border rounded-md" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Image</label>
-                                <input type="file" name="image" accept="image/*" className="mt-1 block w-full" />
+                                <label className="block text-sm font-medium text-gray-700">Image URL</label>
+                                <input type="text" name="image" placeholder="https://res.cloudinary.com/.../image.jpg" className="mt-1 block w-full px-3 py-2 border rounded-md" />
                             </div>
                             <div className="flex gap-4 mt-6">
                                 <button type="button" onClick={() => setIsModalOpen(false)} className="flex-1 bg-gray-100 px-4 py-2 rounded-lg font-medium hover:bg-gray-200">Cancel</button>
