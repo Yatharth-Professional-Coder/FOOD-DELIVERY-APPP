@@ -16,10 +16,11 @@ const RestaurantDetails = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const resRest = await axios.get(`/api/restaurants/${id}`);
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+                const resRest = await axios.get(`${API_URL}/api/restaurants/${id}`);
                 setRestaurant(resRest.data);
 
-                const resFoods = await axios.get(`/api/foods/${id}`);
+                const resFoods = await axios.get(`${API_URL}/api/foods/${id}`);
                 setFoods(resFoods.data);
             } catch (error) {
                 console.error('Error fetching data', error);
