@@ -46,7 +46,8 @@ const addToCart = async (req, res) => {
         }
 
         await cart.save();
-        res.status(200).json(cart);
+        const populatedCart = await Cart.findById(cart._id).populate('items.foodId');
+        res.status(200).json(populatedCart);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -91,7 +92,8 @@ const removeFromCart = async (req, res) => {
         cart.totalAmount = totalAmount;
 
         await cart.save();
-        res.json(cart);
+        const populatedCart = await Cart.findById(cart._id).populate('items.foodId');
+        res.json(populatedCart);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
