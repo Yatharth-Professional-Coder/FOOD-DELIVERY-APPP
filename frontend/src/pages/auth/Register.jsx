@@ -85,8 +85,6 @@ const Register = () => {
                             >
                                 <option value="user">Hungry Customer</option>
                                 <option value="restaurant">Restaurant Owner</option>
-                                {/* Admin user should be seeded or created by other admins, keeping it for testing */}
-                                <option value="admin">Administrator</option>
                             </select>
                         </div>
                     </div>

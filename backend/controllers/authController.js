@@ -13,6 +13,11 @@ const generateToken = (id) => {
 const registerUser = async (req, res) => {
     const { name, email, password, role } = req.body;
 
+    // Prevent open registration of admin accounts
+    if (role === 'admin') {
+        return res.status(403).json({ message: 'Registration as administrator is not allowed.' });
+    }
+
     try {
         const userExists = await User.findOne({ email });
 
