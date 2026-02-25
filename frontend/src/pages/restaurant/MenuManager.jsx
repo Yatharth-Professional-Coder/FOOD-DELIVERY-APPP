@@ -9,6 +9,12 @@ const MenuManager = () => {
     const { user } = useAuth();
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentFood, setCurrentFood] = useState(null);
+
+    const openModal = (food = null) => {
+        setCurrentFood(food);
+        setIsModalOpen(true);
+    };
 
     const getHeaders = () => ({
         headers: { Authorization: `Bearer ${user?.token}` }
@@ -35,24 +41,32 @@ const MenuManager = () => {
         fetchData();
     }, []);
 
-    const handleAddFood = async (e) => {
+    const handleAddOrEditFood = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
+        const payload = {
+            name: formData.get('name'),
+            category: formData.get('category'),
+            price: formData.get('price'),
+            image: formData.get('image')
+        };
         try {
-            await axios.post(`/api/foods/${profile._id}`, {
-                name: formData.get('name'),
-                category: formData.get('category'),
-                price: formData.get('price'),
-                image: formData.get('image')
-            }, {
-                headers: {
-                    Authorization: `Bearer ${user?.token}`
-                }
-            });
+            if (currentFood) {
+                // Edit
+                await axios.put(`/api/foods/${currentFood._id}`, payload, {
+                    headers: { Authorization: `Bearer ${user?.token}` }
+                });
+            } else {
+                // Add
+                await axios.post(`/api/foods/${profile._id}`, payload, {
+                    headers: { Authorization: `Bearer ${user?.token}` }
+                });
+            }
             setIsModalOpen(false);
+            setCurrentFood(null);
             fetchData();
         } catch (error) {
-            alert(error.response?.data?.message || 'Error adding food');
+            alert(error.response?.data?.message || 'Error saving food item');
         }
     };
 
@@ -83,7 +97,7 @@ const MenuManager = () => {
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Menu Manager</h2>
                 <button
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={() => openModal()}
                     className="bg-red-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-red-700"
                 >
                     <Plus size={18} /> Add Menu Item
@@ -131,7 +145,7 @@ const MenuManager = () => {
                                         </button>
                                     </td>
                                     <td className="p-4 text-right flex justify-end gap-2">
-                                        <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="Edit">
+                                        <button onClick={() => openModal(food)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="Edit">
                                             <Edit size={18} />
                                         </button>
                                         <button onClick={() => handleDelete(food._id)} className="p-2 text-red-600 hover:bg-red-50 rounded-lg" title="Delete">
@@ -148,27 +162,27 @@ const MenuManager = () => {
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 w-full max-w-md">
-                        <h3 className="text-xl font-bold mb-4">Add Menu Item</h3>
-                        <form onSubmit={handleAddFood} className="space-y-4">
+                        <h3 className="text-xl font-bold mb-4">{currentFood ? 'Edit Menu Item' : 'Add Menu Item'}</h3>
+                        <form onSubmit={handleAddOrEditFood} className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Item Name</label>
-                                <input type="text" name="name" required className="mt-1 block w-full px-3 py-2 border rounded-md" />
+                                <input type="text" name="name" defaultValue={currentFood?.name || ''} required className="mt-1 block w-full px-3 py-2 border rounded-md" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Category</label>
-                                <input type="text" name="category" required className="mt-1 block w-full px-3 py-2 border rounded-md" />
+                                <input type="text" name="category" defaultValue={currentFood?.category || ''} required className="mt-1 block w-full px-3 py-2 border rounded-md" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Price (₹)</label>
-                                <input type="number" name="price" required min="0" className="mt-1 block w-full px-3 py-2 border rounded-md" />
+                                <input type="number" name="price" defaultValue={currentFood?.price || ''} required min="0" className="mt-1 block w-full px-3 py-2 border rounded-md" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Image URL</label>
-                                <input type="text" name="image" placeholder="https://res.cloudinary.com/.../image.jpg" className="mt-1 block w-full px-3 py-2 border rounded-md" />
+                                <input type="text" name="image" defaultValue={currentFood?.image || ''} placeholder="https://res.cloudinary.com/.../image.jpg" className="mt-1 block w-full px-3 py-2 border rounded-md" />
                             </div>
                             <div className="flex gap-4 mt-6">
-                                <button type="button" onClick={() => setIsModalOpen(false)} className="flex-1 bg-gray-100 px-4 py-2 rounded-lg font-medium hover:bg-gray-200">Cancel</button>
-                                <button type="submit" className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">Add Item</button>
+                                <button type="button" onClick={() => { setIsModalOpen(false); setCurrentFood(null); }} className="flex-1 bg-gray-100 px-4 py-2 rounded-lg font-medium hover:bg-gray-200">Cancel</button>
+                                <button type="submit" className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">{currentFood ? 'Update Item' : 'Add Item'}</button>
                             </div>
                         </form>
                     </div>
