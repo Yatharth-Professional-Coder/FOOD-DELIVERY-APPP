@@ -37,7 +37,7 @@ const Register = () => {
                     </h2>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    {error && <div className="bg-red-50 text-red-600 p-3 rounded text-sm text-center">{error}</div>}
+                    {error && <div className="bg-brand-50 text-brand-600 p-3 rounded text-sm text-center">{error}</div>}
                     <div className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Full Name</label>
@@ -45,7 +45,7 @@ const Register = () => {
                                 type="text"
                                 name="name"
                                 required
-                                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm"
                                 placeholder="John Doe"
                                 value={formData.name}
                                 onChange={handleChange}
@@ -57,7 +57,7 @@ const Register = () => {
                                 type="email"
                                 name="email"
                                 required
-                                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm"
                                 placeholder="Email"
                                 value={formData.email}
                                 onChange={handleChange}
@@ -69,7 +69,7 @@ const Register = () => {
                                 type="password"
                                 name="password"
                                 required
-                                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                                className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm"
                                 placeholder="Password"
                                 value={formData.password}
                                 onChange={handleChange}
@@ -81,7 +81,7 @@ const Register = () => {
                                 name="role"
                                 value={formData.role}
                                 onChange={handleChange}
-                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md"
+                                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-brand-500 focus:border-brand-500 sm:text-sm rounded-md"
                             >
                                 <option value="user">Hungry Customer</option>
                                 <option value="restaurant">Restaurant Owner</option>
@@ -95,7 +95,7 @@ const Register = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:bg-red-400"
+                            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 disabled:bg-brand-400"
                         >
                             {loading ? 'Creating...' : 'Sign up'}
                         </button>
@@ -103,7 +103,7 @@ const Register = () => {
                 </form>
                 <div className="text-center text-sm">
                     <span className="text-gray-600">Already have an account? </span>
-                    <Link to="/login" className="font-medium text-red-600 hover:text-red-500">
+                    <Link to="/login" className="font-medium text-brand-600 hover:text-brand-500">
                         Sign in
                     </Link>
                 </div>

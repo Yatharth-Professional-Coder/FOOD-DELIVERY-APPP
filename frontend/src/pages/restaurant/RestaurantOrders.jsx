@@ -47,7 +47,7 @@ const RestaurantOrders = () => {
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><ClipboardList className="text-red-500" /> Incoming Orders</h2>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><ClipboardList className="text-brand-500" /> Incoming Orders</h2>
 
             <div className="grid gap-6">
                 {loading ? (
@@ -64,7 +64,7 @@ const RestaurantOrders = () => {
                                     <p className="text-sm text-gray-600 flex items-center gap-1 mt-1">📍 {order.deliveryAddress}</p>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-2xl font-extrabold text-red-600">₹{order.totalAmount}</p>
+                                    <p className="text-2xl font-extrabold text-brand-600">₹{order.totalAmount}</p>
                                     <p className="text-sm font-medium bg-gray-100 inline-block px-2 py-1 rounded mt-2">{order.paymentMethod}</p>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ const RestaurantOrders = () => {
                                     {order.items.map(item => (
                                         <div key={item.foodId} className="flex justify-between items-center text-sm">
                                             <div className="flex items-center gap-3">
-                                                <span className="bg-red-100 text-red-700 font-bold px-2 py-1 rounded w-8 text-center">{item.quantity}x</span>
+                                                <span className="bg-brand-100 text-brand-700 font-bold px-2 py-1 rounded w-8 text-center">{item.quantity}x</span>
                                                 <span className="font-medium text-gray-800">{item.name}</span>
                                             </div>
                                             <span className="text-gray-800 font-bold">₹{item.price * item.quantity}</span>
@@ -89,7 +89,7 @@ const RestaurantOrders = () => {
                                 <select
                                     value={order.status}
                                     onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                                    className="border-2 border-red-200 rounded-lg px-4 py-2 text-sm font-bold text-red-700 bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+                                    className="border-2 border-brand-200 rounded-lg px-4 py-2 text-sm font-bold text-brand-700 bg-brand-50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors"
                                 >
                                     <option value="Pending">🕒 Pending</option>
                                     <option value="Preparing">🍳 Preparing</option>

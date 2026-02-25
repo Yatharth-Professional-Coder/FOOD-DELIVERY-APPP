@@ -38,7 +38,7 @@ const RestaurantDetails = () => {
     };
 
     if (loading) return <div className="p-8 text-center text-gray-500">Loading deliciousness...</div>;
-    if (!restaurant) return <div className="p-8 text-center text-red-500">Restaurant not found.</div>;
+    if (!restaurant) return <div className="p-8 text-center text-brand-500">Restaurant not found.</div>;
 
     const totalCartItems = cart?.items?.reduce((acc, item) => acc + item.quantity, 0) || 0;
 
@@ -47,14 +47,14 @@ const RestaurantDetails = () => {
             {/* Header Banner */}
             <div className="bg-white border-b shadow-sm relative sticky top-16 z-10 p-4">
                 <div className="max-w-5xl mx-auto flex items-center justify-between">
-                    <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-600 hover:text-red-600 transition">
+                    <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-600 hover:text-brand-600 transition">
                         <ArrowLeft size={20} /> Back
                     </button>
                     <h1 className="text-xl font-bold truncate px-4">{restaurant.name}</h1>
-                    <button onClick={() => navigate('/cart')} className="relative bg-red-50 p-2 rounded-full text-red-600 hover:bg-red-100 transition">
+                    <button onClick={() => navigate('/cart')} className="relative bg-brand-50 p-2 rounded-full text-brand-600 hover:bg-brand-100 transition">
                         <ShoppingBag size={24} />
                         {totalCartItems > 0 && (
-                            <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold">
+                            <span className="absolute -top-1 -right-1 bg-brand-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold">
                                 {totalCartItems}
                             </span>
                         )}
@@ -68,7 +68,7 @@ const RestaurantDetails = () => {
                         {restaurant.image ? (
                             <img src={restaurant.image} alt={restaurant.name} className="w-full h-full object-cover" />
                         ) : (
-                            <div className="w-full h-full bg-red-100 text-red-500 flex items-center justify-center font-bold text-4xl">{restaurant.name.charAt(0)}</div>
+                            <div className="w-full h-full bg-brand-100 text-brand-500 flex items-center justify-center font-bold text-4xl">{restaurant.name.charAt(0)}</div>
                         )}
                     </div>
                     <div className="p-6 md:w-2/3 flex flex-col justify-center">
@@ -76,7 +76,7 @@ const RestaurantDetails = () => {
                         <p className="text-gray-600 text-lg mb-4">{restaurant.description}</p>
                         <div className="flex gap-4 text-sm text-gray-500">
                             <span className="bg-gray-100 px-3 py-1 rounded-full">📍 {restaurant.address}</span>
-                            <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold">Open Now</span>
+                            <span className="bg-accent-100 text-accent-700 px-3 py-1 rounded-full font-semibold">Open Now</span>
                         </div>
                     </div>
                 </div>
@@ -109,12 +109,12 @@ const RestaurantDetails = () => {
                                             <button
                                                 onClick={() => handleAddToCart(food._id)}
                                                 disabled={addingToCartId === food._id}
-                                                className="bg-white border-2 border-red-200 text-red-600 px-4 py-1.5 rounded-lg text-sm font-bold hover:bg-red-50 hover:border-red-300 transition-colors disabled:opacity-50"
+                                                className="bg-white border-2 border-brand-200 text-brand-600 px-4 py-1.5 rounded-lg text-sm font-bold hover:bg-brand-50 hover:border-brand-300 transition-colors disabled:opacity-50"
                                             >
                                                 {addingToCartId === food._id ? 'Adding...' : 'ADD +'}
                                             </button>
                                         ) : (
-                                            <span className="text-sm font-bold text-red-500 bg-red-50 px-3 py-1 rounded">Out of Stock</span>
+                                            <span className="text-sm font-bold text-brand-500 bg-brand-50 px-3 py-1 rounded">Out of Stock</span>
                                         )}
                                     </div>
                                 </div>

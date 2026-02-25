@@ -98,7 +98,7 @@ const MenuManager = () => {
                 <h2 className="text-2xl font-bold">Menu Manager</h2>
                 <button
                     onClick={() => openModal()}
-                    className="bg-red-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-red-700"
+                    className="bg-brand-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-brand-700"
                 >
                     <Plus size={18} /> Add Menu Item
                 </button>
@@ -128,17 +128,17 @@ const MenuManager = () => {
                                             {food.image ? (
                                                 <img src={food.image} alt={food.name} className="w-full h-full object-cover" />
                                             ) : (
-                                                <div className="w-full h-full bg-red-100 text-red-500 flex items-center justify-center font-bold">🍔</div>
+                                                <div className="w-full h-full bg-brand-100 text-brand-500 flex items-center justify-center font-bold">🍔</div>
                                             )}
                                         </div>
                                         <span className="font-bold text-gray-800">{food.name}</span>
                                     </td>
                                     <td className="p-4 text-sm text-gray-600">{food.category}</td>
-                                    <td className="p-4 text-sm font-bold text-red-600">₹{food.price}</td>
+                                    <td className="p-4 text-sm font-bold text-brand-600">₹{food.price}</td>
                                     <td className="p-4 border-x text-center">
                                         <button
                                             onClick={() => toggleAvailability(food._id, food.isAvailable)}
-                                            className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${food.isAvailable ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}
+                                            className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${food.isAvailable ? 'bg-accent-100 text-accent-700' : 'bg-gray-100 text-gray-600'}`}
                                         >
                                             {food.isAvailable ? <ToggleRight size={16} /> : <ToggleLeft size={16} />}
                                             {food.isAvailable ? 'Available' : 'Out of Stock'}
@@ -148,7 +148,7 @@ const MenuManager = () => {
                                         <button onClick={() => openModal(food)} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="Edit">
                                             <Edit size={18} />
                                         </button>
-                                        <button onClick={() => handleDelete(food._id)} className="p-2 text-red-600 hover:bg-red-50 rounded-lg" title="Delete">
+                                        <button onClick={() => handleDelete(food._id)} className="p-2 text-brand-600 hover:bg-brand-50 rounded-lg" title="Delete">
                                             <Trash2 size={18} />
                                         </button>
                                     </td>
@@ -182,7 +182,7 @@ const MenuManager = () => {
                             </div>
                             <div className="flex gap-4 mt-6">
                                 <button type="button" onClick={() => { setIsModalOpen(false); setCurrentFood(null); }} className="flex-1 bg-gray-100 px-4 py-2 rounded-lg font-medium hover:bg-gray-200">Cancel</button>
-                                <button type="submit" className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">{currentFood ? 'Update Item' : 'Add Item'}</button>
+                                <button type="submit" className="flex-1 bg-brand-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-brand-700">{currentFood ? 'Update Item' : 'Add Item'}</button>
                             </div>
                         </form>
                     </div>

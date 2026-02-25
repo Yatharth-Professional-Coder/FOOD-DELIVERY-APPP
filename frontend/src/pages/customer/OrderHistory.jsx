@@ -32,8 +32,8 @@ const OrderHistory = () => {
             case 'Preparing': return 'bg-orange-100 text-orange-800 border-orange-200';
             case 'Ready': return 'bg-blue-100 text-blue-800 border-blue-200';
             case 'Out for Delivery': return 'bg-purple-100 text-purple-800 border-purple-200';
-            case 'Delivered': return 'bg-green-100 text-green-800 border-green-200';
-            case 'Cancelled': return 'bg-red-100 text-red-800 border-red-200';
+            case 'Delivered': return 'bg-accent-100 text-accent-800 border-green-200';
+            case 'Cancelled': return 'bg-brand-100 text-brand-800 border-brand-200';
             default: return 'bg-gray-100 text-gray-800 border-gray-200';
         }
     };
@@ -55,7 +55,7 @@ const OrderHistory = () => {
     return (
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-gray-50 min-h-[calc(100vh-64px)]">
             <div className="mb-8 flex items-center gap-3">
-                <div className="bg-red-100 p-3 rounded-full text-red-600">
+                <div className="bg-brand-100 p-3 rounded-full text-brand-600">
                     <Package size={28} />
                 </div>
                 <h1 className="text-3xl font-extrabold text-gray-900">My Orders</h1>
@@ -118,7 +118,7 @@ const OrderHistory = () => {
                                 <div className="w-full md:w-64 space-y-6 md:border-l md:border-gray-100 md:pl-8">
                                     <div>
                                         <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center gap-1">
-                                            <MapPin size={16} className="text-red-500" /> Delivery
+                                            <MapPin size={16} className="text-brand-500" /> Delivery
                                         </h3>
                                         <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-100">{order.deliveryAddress}</p>
                                     </div>
@@ -134,7 +134,7 @@ const OrderHistory = () => {
                                     <div className="pt-4 border-t border-gray-100">
                                         <div className="flex justify-between items-center">
                                             <span className="font-bold text-gray-600">Total</span>
-                                            <span className="text-2xl font-extrabold text-red-600">₹{order.totalAmount + 40}</span>
+                                            <span className="text-2xl font-extrabold text-brand-600">₹{order.totalAmount + 40}</span>
                                         </div>
                                         <p className="text-xs text-gray-400 text-right mt-1">incl. ₹40 delivery</p>
                                     </div>

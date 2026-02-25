@@ -47,12 +47,12 @@ const CartCheckout = () => {
         return (
             <div className="min-h-[calc(100vh-64px)] flex flex-col items-center justify-center bg-gray-50 p-6">
                 <div className="bg-white p-8 rounded-2xl shadow-sm text-center max-w-md w-full border border-gray-100">
-                    <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div className="w-24 h-24 bg-brand-50 rounded-full flex items-center justify-center mx-auto mb-6">
                         <span className="text-4xl">🛒</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h2>
                     <p className="text-gray-500 mb-8">Looks like you haven't added any delicious food yet.</p>
-                    <Link to="/" className="inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-full hover:bg-red-700 transition shadow-md hover:shadow-lg">
+                    <Link to="/" className="inline-block bg-brand-600 text-white font-bold py-3 px-8 rounded-full hover:bg-brand-700 transition shadow-md hover:shadow-lg">
                         Browse Restaurants
                     </Link>
                 </div>
@@ -91,7 +91,7 @@ const CartCheckout = () => {
                                         <span className="font-extrabold text-gray-900 text-lg">₹{item.foodId.price * item.quantity}</span>
                                         <button
                                             onClick={() => removeFromCart(item.foodId._id)}
-                                            className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-full transition-colors flex items-center gap-1 text-sm font-medium"
+                                            className="text-brand-500 hover:text-brand-700 hover:bg-brand-50 p-2 rounded-full transition-colors flex items-center gap-1 text-sm font-medium"
                                         >
                                             <Trash2 size={16} /> <span>Remove</span>
                                         </button>
@@ -112,7 +112,7 @@ const CartCheckout = () => {
                             </div>
                             <div className="flex justify-between items-center text-xl font-extrabold text-gray-900 pt-4 border-t border-gray-200">
                                 <span>Total</span>
-                                <span className="text-red-600">₹{cart.totalAmount + 40}</span>
+                                <span className="text-brand-600">₹{cart.totalAmount + 40}</span>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@ const CartCheckout = () => {
                                 <textarea
                                     required
                                     rows="3"
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-shadow resize-none"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-shadow resize-none"
                                     placeholder="Enter your full apartment, street, and landmark..."
                                     value={address}
                                     onChange={(e) => setAddress(e.target.value)}
@@ -142,14 +142,14 @@ const CartCheckout = () => {
                                     <button
                                         type="button"
                                         onClick={() => setPaymentMethod('COD')}
-                                        className={`py-3 px-4 rounded-xl border-2 font-bold transition-all ${paymentMethod === 'COD' ? 'border-red-500 bg-red-50 text-red-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}
+                                        className={`py-3 px-4 rounded-xl border-2 font-bold transition-all ${paymentMethod === 'COD' ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}
                                     >
                                         Cash on Delivery
                                     </button>
                                     <button
                                         type="button"
                                         onClick={() => setPaymentMethod('Online')}
-                                        className={`py-3 px-4 rounded-xl border-2 font-bold transition-all ${paymentMethod === 'Online' ? 'border-red-500 bg-red-50 text-red-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}
+                                        className={`py-3 px-4 rounded-xl border-2 font-bold transition-all ${paymentMethod === 'Online' ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}
                                     >
                                         Online (Mock)
                                     </button>
@@ -159,7 +159,7 @@ const CartCheckout = () => {
                             <button
                                 type="submit"
                                 disabled={placingOrder}
-                                className="w-full bg-red-600 text-white font-extrabold py-4 px-6 rounded-xl hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all flex justify-center items-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed shadow-md hover:shadow-xl transform hover:-translate-y-0.5"
+                                className="w-full bg-brand-600 text-white font-extrabold py-4 px-6 rounded-xl hover:bg-brand-700 focus:outline-none focus:ring-4 focus:ring-brand-300 transition-all flex justify-center items-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed shadow-md hover:shadow-xl transform hover:-translate-y-0.5"
                             >
                                 {placingOrder ? 'Processing Order...' : `Pay ₹${cart.totalAmount + 40} securely`}
                                 {!placingOrder && <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />}

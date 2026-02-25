@@ -83,7 +83,7 @@ const RestaurantOverview = () => {
                         <label className="block text-sm font-medium text-gray-700">Restaurant Image URL</label>
                         <input type="text" name="image" placeholder="https://res.cloudinary.com/.../image.jpg" className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm" />
                     </div>
-                    <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">Create Profile</button>
+                    <button type="submit" className="bg-brand-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-brand-700">Create Profile</button>
                 </form>
             </div>
         );
@@ -99,7 +99,7 @@ const RestaurantOverview = () => {
                     )}
                     <button
                         onClick={toggleStatus}
-                        className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-white transition-colors ${profile.isOnline ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-500 hover:bg-gray-600'}`}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-white transition-colors ${profile.isOnline ? 'bg-accent-600 hover:bg-accent-700' : 'bg-gray-500 hover:bg-gray-600'}`}
                     >
                         {profile.isOnline ? <ToggleRight size={20} /> : <ToggleLeft size={20} />}
                         {profile.isOnline ? 'Online - Accepting Orders' : 'Offline - Not Accepting Orders'}
@@ -125,7 +125,7 @@ const RestaurantDashboard = () => {
     const location = useLocation();
 
     const isActive = (path) => {
-        return location.pathname === path ? 'bg-red-50 text-red-600' : 'text-gray-600 hover:bg-gray-50';
+        return location.pathname === path ? 'bg-brand-50 text-brand-600' : 'text-gray-600 hover:bg-gray-50';
     };
 
     return (

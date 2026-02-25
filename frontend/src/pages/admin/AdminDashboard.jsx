@@ -9,7 +9,7 @@ const AdminOverview = () => (
         <h2 className="text-2xl font-bold mb-4">Overview</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
-                <Store className="text-red-500" size={32} />
+                <Store className="text-brand-500" size={32} />
                 <div>
                     <p className="text-gray-500 text-sm font-medium">Total Restaurants</p>
                     <p className="text-2xl font-bold">-</p>
@@ -30,7 +30,7 @@ const AdminDashboard = () => {
     const location = useLocation();
 
     const isActive = (path) => {
-        return location.pathname === path ? 'bg-red-50 text-red-600' : 'text-gray-600 hover:bg-gray-50';
+        return location.pathname === path ? 'bg-brand-50 text-brand-600' : 'text-gray-600 hover:bg-gray-50';
     };
 
     return (

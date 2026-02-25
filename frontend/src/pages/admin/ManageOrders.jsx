@@ -39,7 +39,7 @@ const ManageOrders = () => {
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><ShoppingBag className="text-red-500" /> Manage Orders</h2>
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2"><ShoppingBag className="text-brand-500" /> Manage Orders</h2>
 
             <div className="grid gap-6">
                 {loading ? (
@@ -56,7 +56,7 @@ const ManageOrders = () => {
                                     <p className="text-sm text-gray-600">Address: {order.deliveryAddress}</p>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-xl font-bold text-red-600">₹{order.totalAmount}</p>
+                                    <p className="text-xl font-bold text-brand-600">₹{order.totalAmount}</p>
                                     <p className="text-sm font-medium bg-gray-100 inline-block px-2 py-1 rounded mt-1">{order.paymentMethod}</p>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@ const ManageOrders = () => {
                                 <select
                                     value={order.status}
                                     onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                                    className="border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    className="border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-500"
                                 >
                                     <option value="Pending">Pending</option>
                                     <option value="Preparing">Preparing</option>
