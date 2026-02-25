@@ -5,7 +5,7 @@ const Restaurant = require('../models/Restaurant');
 // @access  Restaurant/Admin
 const createRestaurant = async (req, res) => {
     try {
-        const { name, description, address } = req.body;
+        const { name, description, address, image } = req.body;
 
         // Check if user already has a restaurant
         const existing = await Restaurant.findOne({ userId: req.user._id });
@@ -18,7 +18,7 @@ const createRestaurant = async (req, res) => {
             name,
             description,
             address,
-            image: req.file ? req.file.path : '',
+            image: image || '',
             isActive: req.user.role === 'admin' ? true : false, // Auto-approve if admin
             isOnline: true
         });
@@ -85,7 +85,7 @@ const getMyRestaurant = async (req, res) => {
 // @access  Restaurant/Admin
 const updateRestaurant = async (req, res) => {
     try {
-        const { name, description, address } = req.body;
+        const { name, description, address, image } = req.body;
         const restaurant = await Restaurant.findById(req.params.id);
 
         if (restaurant) {
@@ -98,8 +98,8 @@ const updateRestaurant = async (req, res) => {
             restaurant.description = description || restaurant.description;
             restaurant.address = address || restaurant.address;
 
-            if (req.file) {
-                restaurant.image = req.file.path;
+            if (image) {
+                restaurant.image = image;
             }
 
             const updatedRestaurant = await restaurant.save();

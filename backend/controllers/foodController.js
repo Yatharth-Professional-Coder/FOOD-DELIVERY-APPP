@@ -17,7 +17,7 @@ const createFoodItem = async (req, res) => {
             return res.status(401).json({ message: 'Not authorized' });
         }
 
-        const { name, price, category, isAvailable } = req.body;
+        const { name, price, category, isAvailable, image } = req.body;
 
         const foodItem = new FoodItem({
             restaurantId: req.params.restaurantId,
@@ -25,7 +25,7 @@ const createFoodItem = async (req, res) => {
             price,
             category,
             isAvailable: isAvailable !== undefined ? isAvailable : true,
-            image: req.file ? req.file.path : ''
+            image: image || ''
         });
 
         const createdFood = await foodItem.save();
@@ -62,15 +62,15 @@ const updateFoodItem = async (req, res) => {
             return res.status(401).json({ message: 'Not authorized' });
         }
 
-        const { name, price, category, isAvailable } = req.body;
+        const { name, price, category, isAvailable, image } = req.body;
 
         foodItem.name = name || foodItem.name;
         foodItem.price = price || foodItem.price;
         foodItem.category = category || foodItem.category;
         foodItem.isAvailable = isAvailable !== undefined ? isAvailable : foodItem.isAvailable;
 
-        if (req.file) {
-            foodItem.image = req.file.path;
+        if (image) {
+            foodItem.image = image;
         }
 
         const updatedFood = await foodItem.save();
